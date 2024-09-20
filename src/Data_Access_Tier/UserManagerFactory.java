@@ -25,6 +25,7 @@ public class UserManagerFactory {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return null;
     }
 
     public String getProperty(String key) {
@@ -33,6 +34,6 @@ public class UserManagerFactory {
 }
 
         
-    }
     
-}
+    
+
