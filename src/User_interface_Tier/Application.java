@@ -5,9 +5,7 @@
  */
 package User_interface_Tier;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
+import Config.Configuration;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -33,15 +31,6 @@ public class Application extends javafx.application.Application {
         //Show stage
         stage.show();
         
-        Properties properties = new Properties();
-        try {
-            // Cargar el archivo de propiedades
-            FileInputStream input = new FileInputStream("config.properties");
-            properties.load(input);
-            input.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /**

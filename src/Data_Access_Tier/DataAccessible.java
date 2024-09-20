@@ -13,6 +13,6 @@ import Model.User;
  */
 public interface DataAccessible {
     
-    User getUserData();
+    public User getUserData();
     
 }
