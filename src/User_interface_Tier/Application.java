@@ -3,8 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package hellotiersworld;
+package User_interface_Tier;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.util.Properties;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -22,13 +25,23 @@ public class Application extends javafx.application.Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("UserDataWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("View.UserDataWindow.fxml"));
         //create scene
         Scene scene = new Scene(root);
         //Put scene on stage
         stage.setScene(scene);
         //Show stage
         stage.show();
+        
+        Properties properties = new Properties();
+        try {
+            // Cargar el archivo de propiedades
+            FileInputStream input = new FileInputStream("config.properties");
+            properties.load(input);
+            input.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     /**
