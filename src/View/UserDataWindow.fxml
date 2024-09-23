@@ -4,16 +4,15 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="362.0" prefWidth="544.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hellotiersworld.UserDataWindowController">
+<AnchorPane id="AnchorPane" prefHeight="362.0" prefWidth="544.0" xmlns="http://javafx.com/javafx/9.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="User_interface_Tier.UserDataWindowController">
     <children>
-        <Label fx:id="label" layoutX="126" layoutY="120" minHeight="16" minWidth="69" />
-      <TextField layoutX="311.0" layoutY="90.0" />
-      <TextField layoutX="311.0" layoutY="234.0" />
-      <TextField layoutX="87.0" layoutY="90.0" />
-      <TextField layoutX="87.0" layoutY="234.0" />
-      <Label layoutX="147.0" layoutY="55.0" text="ID" />
-      <Label layoutX="363.0" layoutY="55.0" text="Nombre" />
-      <Label layoutX="136.0" layoutY="200.0" text="Apellidos" />
-      <Label layoutX="371.0" layoutY="200.0" text="Email" />
+      <TextField fx:id="textFieldNombre" editable="false" layoutX="311.0" layoutY="90.0" />
+      <TextField fx:id="textFieldEmail" editable="false" layoutX="311.0" layoutY="234.0" />
+      <TextField fx:id="textFieldId" editable="false" layoutX="87.0" layoutY="90.0" />
+      <TextField fx:id="textFieldApellidos" editable="false" layoutX="87.0" layoutY="234.0" />
+      <Label fx:id="labelId" layoutX="147.0" layoutY="55.0" text="ID" />
+      <Label fx:id="labelNombre" layoutX="363.0" layoutY="55.0" text="Nombre" />
+      <Label fx:id="labelApellidos" layoutX="136.0" layoutY="200.0" text="Apellidos" />
+      <Label fx:id="labelEmail" layoutX="371.0" layoutY="200.0" text="Email" />
     </children>
 </AnchorPane>

@@ -5,9 +5,7 @@
  */
 package Data_Access_Tier;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
+import java.util.ResourceBundle;
 
 /**
  *
@@ -15,24 +13,18 @@ import java.util.Properties;
  */
 public class UserManagerFactory {
     
-    private Properties properties;
-    
-    public DataAccessible getUserData(){
-    
-        properties = new Properties();
-        try (FileInputStream input = new FileInputStream("config.properties")) {
-            properties.load(input);
-        } catch (IOException e) {
-            e.printStackTrace();
+    public static DataAccessible getUserManager(){
+        
+        ResourceBundle config = ResourceBundle.getBundle("Config.config");
+        String readMethod = config.getString("readMethod");
+        
+        if (readMethod.equals("0")) {
+            return new DBUserDataAccessor();
+        } else {
+            return new FileUserDataAccessor();
         }
-    }
-
-    public String getProperty(String key) {
-        return properties.getProperty(key);
-    }
-}
-
         
     }
     
 }
+
