@@ -5,7 +5,7 @@
  */
 package User_interface_Tier;
 
-import Config.Configuration;
+import java.util.logging.Logger;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -23,11 +23,13 @@ public class Application extends javafx.application.Application {
      */
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("View.UserDataWindow.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/View/UserDataWindow.fxml"));
         //create scene
         Scene scene = new Scene(root);
         //Put scene on stage
         stage.setScene(scene);
+        //Put a title to the window
+        stage.setTitle("User Data Window");
         //Show stage
         stage.show();
         

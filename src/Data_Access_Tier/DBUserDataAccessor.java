@@ -11,6 +11,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Logger;
 
 /**
  *
@@ -59,8 +60,7 @@ public class DBUserDataAccessor implements DataAccessible {
                 conexion.close();
             }
         } catch (SQLException error) {
-            System.out.println("Error al intentar cerrar la conexión: " + error.getMessage());
-            error.printStackTrace();
+            Logger.getLogger("Data_Access_Tier").severe(error.getLocalizedMessage());
         }
     }
 

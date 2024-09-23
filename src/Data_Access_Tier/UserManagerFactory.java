@@ -5,7 +5,7 @@
  */
 package Data_Access_Tier;
 
-import Config.Configuration;
+import java.util.ResourceBundle;
 
 /**
  *
@@ -13,12 +13,12 @@ import Config.Configuration;
  */
 public class UserManagerFactory {
     
-    public DataAccessible getUserManager(){
+    public static DataAccessible getUserManager(){
         
-        Configuration configuration = new Configuration("config.properties");
-        configuration.getProperty("readMethod");
+        ResourceBundle config = ResourceBundle.getBundle("Config.config");
+        String readMethod = config.getString("readMethod");
         
-        if (configuration.equals("0")) {
+        if (readMethod.equals("0")) {
             return new DBUserDataAccessor();
         } else {
             return new FileUserDataAccessor();

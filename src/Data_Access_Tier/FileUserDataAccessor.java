@@ -6,14 +6,10 @@
 package Data_Access_Tier;
 
 import Model.User;
-import java.io.EOFException;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.util.logging.Level;
+import java.util.ResourceBundle;
 import java.util.logging.Logger;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 /**
  *
@@ -22,10 +18,23 @@ import java.util.logging.Logger;
 public class FileUserDataAccessor implements DataAccessible {
 
     @Override
-    public User getUserData() {
+    public User getUserData(){
         
         User user = new User();
-        boolean encontrado = false;
+        try {
+            ResourceBundle userData = ResourceBundle.getBundle("Config.user");
+
+            user.setId(Integer.parseInt(userData.getString("id")));
+            user.setNombre(userData.getString("nombre"));
+            user.setApellido(userData.getString("apellido"));
+            user.setEmail(userData.getString("email"));
+        } catch (Exception error) {
+            
+            Logger.getLogger("Data_Access_Tier").severe(error.getLocalizedMessage());
+            
+            new Alert(Alert.AlertType.ERROR,error.getLocalizedMessage(),ButtonType.OK).showAndWait();
+            
+        }
         
         return user;
         

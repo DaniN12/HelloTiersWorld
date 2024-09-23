@@ -13,6 +13,6 @@ import Model.User;
  */
 public interface DataAccessible {
     
-    public User getUserData();
+    public User getUserData() throws Exception;
     
 }
