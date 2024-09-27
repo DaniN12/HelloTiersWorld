@@ -2,7 +2,10 @@ package User_interface_Tier;
 
 import Data_Access_Tier.UserManagerFactory;
 import Model.User;
+import java.util.logging.Logger;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
@@ -57,8 +60,9 @@ public class UserDataWindowController {
                 textFieldApellidos.setText(user.getApellido());
                 textFieldEmail.setText(user.getEmail());
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception error) {
+            Logger.getLogger("User_interface_Tier").severe(error.getLocalizedMessage());
+            new Alert(Alert.AlertType.ERROR, error.getLocalizedMessage(), ButtonType.OK).showAndWait();
         }
     }  
 }

@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Logger;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 /**
  * Implementation of DataAccessible to retrieve user data from a database.
@@ -63,6 +65,7 @@ public class DBUserDataAccessor implements DataAccessible {
                 }
             } catch (SQLException error) {
                 Logger.getLogger("Data_Access_Tier").severe(error.getLocalizedMessage());
+                new Alert(Alert.AlertType.ERROR, error.getLocalizedMessage(), ButtonType.OK).showAndWait();
             }
         }
         return usuario;
