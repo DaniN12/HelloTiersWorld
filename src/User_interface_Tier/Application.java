@@ -12,34 +12,35 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 /**
- *
- * @author kbilb
+ * The main application class for launching the JavaFX User Data Window.
+ * It sets up the stage, loads the FXML file, and displays the window.
+ * 
+ * @author Kelian
  */
 public class Application extends javafx.application.Application {
+    
     /**
+     * The start method is the main entry point for all JavaFX applications.
+     * It sets up the stage, loads the FXML view, and displays the window.
      * 
      * @param stage The main window
-     * @throws Exception When view can not be found
+     * @throws Exception If the view cannot be loaded
      */
     @Override
     public void start(Stage stage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("/View/UserDataWindow.fxml"));
-        //create scene
         Scene scene = new Scene(root);
-        //Put scene on stage
         stage.setScene(scene);
-        //Put a title to the window
         stage.setTitle("User Data Window");
-        //Show stage
         stage.show();
-        
     }
 
     /**
-     * @param args the command line arguments
+     * Main method to launch the JavaFX application.
+     * 
+     * @param args Command line arguments
      */
     public static void main(String[] args) {
         launch(args);
     }
-    
 }

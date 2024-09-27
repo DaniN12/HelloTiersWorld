@@ -12,33 +12,31 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 
 /**
- *
- * @author kbilb
+ * Implementation of DataAccessible to retrieve user data from a properties file.
+ * It reads the user data from a properties file.
+ * 
+ * @author Kelian
  */
 public class FileUserDataAccessor implements DataAccessible {
 
+    /**
+     * Retrieves user data from a properties file.
+     * 
+     * @return A User object with the data from the file.
+     */
     @Override
-    public User getUserData(){
-        
+    public User getUserData() {
         User user = new User();
         try {
             ResourceBundle userData = ResourceBundle.getBundle("Config.user");
-
             user.setId(Integer.parseInt(userData.getString("id")));
             user.setNombre(userData.getString("nombre"));
             user.setApellido(userData.getString("apellido"));
             user.setEmail(userData.getString("email"));
         } catch (Exception error) {
-            
             Logger.getLogger("Data_Access_Tier").severe(error.getLocalizedMessage());
-            
-            new Alert(Alert.AlertType.ERROR,error.getLocalizedMessage(),ButtonType.OK).showAndWait();
-            
+            new Alert(Alert.AlertType.ERROR, error.getLocalizedMessage(), ButtonType.OK).showAndWait();
         }
-        
         return user;
-        
     }
-    
-    
 }
