@@ -14,58 +14,57 @@ import java.sql.SQLException;
 import java.util.logging.Logger;
 
 /**
- *
- * @author kbilb
+ * Implementation of DataAccessible to retrieve user data from a database.
+ * It connects to a MySQL database and retrieves user information.
+ * 
+ * @author Dani
  */
 public class DBUserDataAccessor implements DataAccessible {
 
     private Connection conexion;
     private PreparedStatement sentencia;
     ResultSet rs = null;
-    
+
     final String CARGARusuario = "SELECT * FROM info";
-    
+
+    /**
+     * Retrieves user data from a MySQL database.
+     * 
+     * @return A User object with the data from the database, or null if no data is found.
+     */
     @Override
-   public User getUserData() {
-    User usuario = null; // Inicializa la variable fuera del bloque try
-
-    // Abre la conexión a la base de datos
-    try {
-        String url = "jdbc:mysql://localhost:3306/users?serverTimezone=Europe/Madrid&useSSL=false";
-        conexion = DriverManager.getConnection(url, "root", "abcd*1234");
-
-        // Prepara y ejecuta la consulta
-        sentencia = conexion.prepareStatement(CARGARusuario);
-        ResultSet rs = sentencia.executeQuery();
-
-        // Verifica si hay resultados
-        if (rs.next()) { // Cambia a usar rs.next() para verificar la existencia de resultados
-            usuario = new User();
-            usuario.setId(rs.getInt("id"));
-            usuario.setNombre(rs.getString("nombre"));
-            usuario.setApellido(rs.getString("apellido"));
-            usuario.setEmail(rs.getString("email"));
-        }
-
-    } catch (SQLException e) {
-        System.out.println("Error al intentar abrir la BD: " + e.getMessage());
-        e.printStackTrace();
-    } finally {
-        // Cierra recursos en el bloque finally
+    public User getUserData() {
+        User usuario = null;
         try {
-            if (sentencia != null) {
-                sentencia.close();
-            }
-            if (conexion != null) { // Asegúrate de que la conexión se cierre
-                conexion.close();
-            }
-        } catch (SQLException error) {
-            Logger.getLogger("Data_Access_Tier").severe(error.getLocalizedMessage());
-        }
-    }
+            String url = "jdbc:mysql://127.0.0.1:3306/users?serverTimezone=Europe/Madrid&useSSL=false";
+            conexion = DriverManager.getConnection(url, "root", "abcd*1234");
 
-    return usuario; // Retorna el usuario (puede ser null si no se encontró)
+            sentencia = conexion.prepareStatement(CARGARusuario);
+            ResultSet rs = sentencia.executeQuery();
+
+            if (rs.next()) {
+                usuario = new User();
+                usuario.setId(rs.getInt("id"));
+                usuario.setNombre(rs.getString("nombre"));
+                usuario.setApellido(rs.getString("apellido"));
+                usuario.setEmail(rs.getString("email"));
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Error while opening the DB: " + e.getMessage());
+            e.printStackTrace();
+        } finally {
+            try {
+                if (sentencia != null) {
+                    sentencia.close();
+                }
+                if (conexion != null) {
+                    conexion.close();
+                }
+            } catch (SQLException error) {
+                Logger.getLogger("Data_Access_Tier").severe(error.getLocalizedMessage());
+            }
+        }
+        return usuario;
     }
 }
-
-    

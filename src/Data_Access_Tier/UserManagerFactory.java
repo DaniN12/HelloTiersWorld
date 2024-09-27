@@ -8,13 +8,19 @@ package Data_Access_Tier;
 import java.util.ResourceBundle;
 
 /**
- *
- * @author kbilb
+ * Factory class to retrieve the appropriate DataAccessible instance.
+ * It decides whether to load data from a database or a file based on configuration.
+ * 
+ * @author Kelian
  */
 public class UserManagerFactory {
     
-    public static DataAccessible getUserManager(){
-        
+    /**
+     * Returns an implementation of DataAccessible based on configuration.
+     * 
+     * @return A DataAccessible object, either for database or file access.
+     */
+    public static DataAccessible getUserManager() {
         ResourceBundle config = ResourceBundle.getBundle("Config.config");
         String readMethod = config.getString("readMethod");
         
@@ -23,8 +29,5 @@ public class UserManagerFactory {
         } else {
             return new FileUserDataAccessor();
         }
-        
     }
-    
 }
-

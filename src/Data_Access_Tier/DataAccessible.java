@@ -8,11 +8,18 @@ package Data_Access_Tier;
 import Model.User;
 
 /**
- *
- * @author kbilb
+ * Interface defining the contract for accessing user data.
+ * Implementations can retrieve data from different sources (e.g., file or database).
+ * 
+ * @author Dani
  */
 public interface DataAccessible {
     
+    /**
+     * Retrieves user data.
+     * 
+     * @return A User object containing user data.
+     * @throws Exception If an error occurs while retrieving the data.
+     */
     public User getUserData() throws Exception;
-    
 }
